@@ -42,6 +42,8 @@ Software voltado à **detecção e prevenção de fraudes em transações via PI
 - [ ] Funcionalidade de **PIX** entre usuários com chaves cadastradas.
 
 # Para Bancos, Instituições Financeiras e Fintechs
+- [ ] Validação de Documentos
+- [ ] Validação de Fotos pelo Compliance
 - [ ] Dashboard com **monitoramento ao vivo** das transações;  
 - [ ] Exibição em tempo real do **valor prevenido de fraudes**;  
 - [ ] **Bloqueio manual de contas** suspeitas;  
