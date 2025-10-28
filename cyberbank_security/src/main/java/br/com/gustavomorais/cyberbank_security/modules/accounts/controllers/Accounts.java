@@ -50,7 +50,7 @@ public class Accounts {
         }
     }
 
-    // NOVO: Verificar cliente pelo combo Agência + Conta + CPF
+    // Verificar cliente pelo combo Agência + Conta + CPF
     @CrossOrigin(origins = "*")
     @PostMapping("/verificar")
     public ResponseEntity<Object> verificarCliente(@RequestBody LoginRequest request) {
@@ -63,7 +63,7 @@ public class Accounts {
 
             if (cliente == null) {
                 return ResponseEntity.status(404)
-                        .body("Cliente não encontrado. Verifique seus dados.");
+                        .body("Conta não encontrada. Verifique seus dados.");
             }
 
             // Retorna apenas dados que serão usados na próxima tela
@@ -115,8 +115,5 @@ public class Accounts {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 }
-
-
-
     
 }
