@@ -1,0 +1,10 @@
+services:
+  postgres:
+    container_name: cyberbank_security_postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=adm
+      - POSTGRES_PASSWORD=adm
+      - POSTGRES_DB=cyberbank_db
