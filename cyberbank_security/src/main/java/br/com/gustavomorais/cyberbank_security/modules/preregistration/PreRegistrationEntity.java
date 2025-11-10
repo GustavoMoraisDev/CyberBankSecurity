@@ -63,6 +63,8 @@ import lombok.Data;
             this.status = "1";
         }
 
+        this.riskIndex = RiskCalculatorService.calcularRiskIndex(dataNascimento, uf, cidade);
+
     }
 
 
@@ -74,6 +76,9 @@ import lombok.Data;
     
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    // recebe a lógica de risco
+    private Integer riskIndex;
 
 
 

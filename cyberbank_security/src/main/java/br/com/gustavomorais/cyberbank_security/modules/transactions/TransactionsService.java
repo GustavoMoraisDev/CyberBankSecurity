@@ -1,5 +1,8 @@
 package br.com.gustavomorais.cyberbank_security.modules.transactions;
 
+import java.util.HashMap;
+import java.util.*;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,4 +54,20 @@ public class TransactionsService {
         // Salva a transação
         return transactionsRepository.save(transaction);
     }
+
+    public Map<String, Object> findByAccountNumber(String accountNumber) {
+        // Lista de transações em que a conta foi pagadora (saídas)
+        List<TransactionsEntity> saidas = transactionsRepository.findByAccountPayment(accountNumber);
+
+        // Lista de transações em que a conta foi recebedora (entradas)
+        List<TransactionsEntity> entradas = transactionsRepository.findByAccountReceivable(accountNumber);
+
+        // Retorna um mapa (JSON) com as duas listas
+        Map<String, Object> result = new HashMap<>();
+        result.put("entradas", entradas);
+        result.put("saidas", saidas);
+        return result;
+    }
+
+
 }

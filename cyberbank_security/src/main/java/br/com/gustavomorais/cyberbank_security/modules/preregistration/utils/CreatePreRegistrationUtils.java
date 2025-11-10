@@ -16,7 +16,7 @@ public class CreatePreRegistrationUtils {
         this.preRegistrationRepository
         .findByCpfOrEmail(PreRegistrationEntity.getCpf(), PreRegistrationEntity.getEmail())
         .ifPresent((user) -> {
-            throw new RuntimeException("Usuário já existe");
+            throw new RuntimeException("Esse usuário já possui cadastro conosco, entre em contato com o Suporte!");
         });
 
         // Salvando a entidade de pré-cadastro no banco de dados

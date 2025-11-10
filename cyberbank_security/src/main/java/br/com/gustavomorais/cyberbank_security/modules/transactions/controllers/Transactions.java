@@ -31,4 +31,16 @@ public class Transactions {
             return ResponseEntity.internalServerError().body("Erro ao criar transação: " + e.getMessage());
         }
     }
+
+    @GetMapping("/account/{accountNumber}")
+    public ResponseEntity<?> getByAccount(@PathVariable String accountNumber) {
+        try {
+            var result = transactionsService.findByAccountNumber(accountNumber);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Erro ao buscar transações: " + e.getMessage());
+        }
+    }
+
+
 }
