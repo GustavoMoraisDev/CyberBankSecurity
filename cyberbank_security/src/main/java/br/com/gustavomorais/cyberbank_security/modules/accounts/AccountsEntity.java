@@ -53,7 +53,7 @@ public class AccountsEntity {
         }
 
         if (limitePix == null) {
-            this.limitePix = "10.000";
+            this.limitePix = "1.500";
         }
 
         if (pixKey == null) {
@@ -100,7 +100,6 @@ public class AccountsEntity {
 
     private String pixKey;
 
-    // será um indice de risco 0 - Baixo 1 - Médio 2 - Alto
     private Integer riskIndex;
 
     // Saldo inicializado como 0 em @PrePersist

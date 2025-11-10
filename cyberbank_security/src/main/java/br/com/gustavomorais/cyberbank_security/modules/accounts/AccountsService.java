@@ -50,16 +50,23 @@ public class AccountsService {
 
      // Cadastrar ou atualizar a chave Pix
     public void registerOrUpdatePixKey(Integer accountNumber, String pixKey) {
-        Optional<AccountsEntity> accountOpt = accountsRepository.findByAccountNumber(accountNumber);
+    Optional<AccountsEntity> accountOpt = accountsRepository.findByAccountNumber(accountNumber);
 
-        if (accountOpt.isEmpty()) {
-            throw new RuntimeException("Conta não encontrada");
-        }
-
-        AccountsEntity account = accountOpt.get();
-        account.setPixKey(pixKey);
-        accountsRepository.save(account);
+    if (accountOpt.isEmpty()) {
+        throw new RuntimeException("Conta não encontrada");
     }
+
+    // Verifica se já existe uma conta com essa chave Pix
+    Optional<AccountsEntity> existingPixKey = accountsRepository.findByPixKey(pixKey);
+    if (existingPixKey.isPresent() && !existingPixKey.get().getAccountNumber().equals(accountNumber)) {
+        throw new RuntimeException("Essa chave Pix já está cadastrada em outra conta");
+    }
+
+    // Atualiza ou cadastra a chave
+    AccountsEntity account = accountOpt.get();
+    account.setPixKey(pixKey);
+    accountsRepository.save(account);
+}
 
      
 }
