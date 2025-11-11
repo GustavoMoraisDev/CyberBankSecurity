@@ -19,4 +19,6 @@ public interface AccountsRepository extends JpaRepository<AccountsEntity, UUID> 
     Optional<AccountsEntity> findByAccountNumber(Integer accountNumber);
 
     Optional<AccountsEntity> findByPixKey(String pixKey);
+
+    
 }

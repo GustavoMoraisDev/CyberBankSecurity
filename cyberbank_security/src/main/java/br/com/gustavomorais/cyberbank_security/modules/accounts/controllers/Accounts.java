@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import br.com.gustavomorais.cyberbank_security.modules.accounts.dto.PixKeyRequestDTO;
 import java.util.UUID;
+import java.util.Optional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -132,7 +133,7 @@ public class Accounts {
     try {
         AccountsEntity account = accountsService.findById(id);
         if (account == null) {
-            return ResponseEntity.status(404).body("Conta não encontrada");
+            return ResponseEntity.status(404).body("teste");
         }
         return ResponseEntity.ok(account);
     } catch (Exception e) {
@@ -173,5 +174,38 @@ public class Accounts {
         return ResponseEntity.badRequest().body(e.getMessage());
       }
     }
+
+       @CrossOrigin(origins = "*")
+       @PutMapping("/{accountNumber}/{status}")
+        public ResponseEntity<Object> updateStatus(
+         @PathVariable Integer accountNumber,
+        @PathVariable String status
+    ) {
+          try {
+        Optional<AccountsEntity> optionalAccount = accountsRepository.findByAccountNumber(accountNumber);
+        if (optionalAccount.isEmpty()) {
+         return ResponseEntity.status(404).body("Conta não encontrada.");
+         }
+
+        AccountsEntity account = optionalAccount.get();
+
+
+        // Atualiza o status
+        account.setStatus(status.toUpperCase());
+        accountsRepository.save(account);
+
+        String statusName;
+        if (status == "1") {
+            statusName = "Ativo";
+        } else {
+            statusName = "Inativo";
+        }
+
+        return ResponseEntity.ok("Status atualizado para " + statusName);
+    } catch (Exception e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+    }
+
     
 }
