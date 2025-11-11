@@ -29,7 +29,7 @@ public class AccountsService {
         return accountsRepository.findAll();
     }
 
-    // NOVO: busca pelo combo Agência + Conta + CPF
+    // busca pelo combo Agência + Conta + CPF
     public AccountsEntity findByAgencyAndAccountAndCpf(String agencyNumber, Integer accountNumber, String cpf) {
         return accountsRepository
                 .findByAgencyNumberAndAccountNumberAndCpf(agencyNumber, accountNumber, cpf)

@@ -12,7 +12,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
-// Entidade de pré-cadastro
+// Entidade de Administrador
  @Data
  @Entity(name = "administration")
  public class AdministrationEntity {

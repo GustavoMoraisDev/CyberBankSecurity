@@ -48,6 +48,8 @@ public class AccountsEntity {
             this.tokenSecurity = UUID.randomUUID().toString();
         }
 
+
+
         if (agencyNumber == null) {
             this.agencyNumber = "0001";
         }
@@ -62,6 +64,14 @@ public class AccountsEntity {
 
         if (riskIndex == null) {
             this.riskIndex = 0;
+        }
+
+        if (status == null) {
+            this.status = "1";
+        }
+
+        if (tokenSecurityTransactions == null) {
+            this.tokenSecurityTransactions = "Expirado";
         }
 
     }
@@ -110,6 +120,11 @@ public class AccountsEntity {
     
     // Token de segurança gerado automaticamente em @PrePersist
     private String tokenSecurity;
+
+    private String tokenSecurityTransactions;
+
+    // Status sempre deve ser 1,2 ou 3 que significam 1 - Ativo 2 - Inativo
+    private String status;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

@@ -56,13 +56,13 @@ public class TransactionsService {
     }
 
     public Map<String, Object> findByAccountNumber(String accountNumber) {
-        // Lista de transações em que a conta foi pagadora (saídas)
+        
         List<TransactionsEntity> saidas = transactionsRepository.findByAccountPayment(accountNumber);
 
-        // Lista de transações em que a conta foi recebedora (entradas)
+        
         List<TransactionsEntity> entradas = transactionsRepository.findByAccountReceivable(accountNumber);
 
-        // Retorna um mapa (JSON) com as duas listas
+        
         Map<String, Object> result = new HashMap<>();
         result.put("entradas", entradas);
         result.put("saidas", saidas);
